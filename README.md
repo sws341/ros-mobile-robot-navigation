@@ -1,6 +1,6 @@
 # 移动机器人机电系统设计与 ROS 自主导航
 
-**Mobile Robot Navigation & Arduino Control** · 本科毕业设计（2025）· 公开归档版 `v1.0.0`
+**Mobile Robot Navigation & Arduino Control** · 本科毕业设计（2025）· 公开归档版 `v1.0.1`
 
 [![Static validation](https://github.com/sws341/ros-mobile-robot-navigation/actions/workflows/static-validation.yml/badge.svg)](https://github.com/sws341/ros-mobile-robot-navigation/actions/workflows/static-validation.yml)
 [![License: MIT](https://img.shields.io/badge/author--owned%20code-MIT-blue.svg)](LICENSE)
@@ -158,7 +158,7 @@ source devel/setup.bash
 - 修复 `test_amcl_rviz.launch` 中缺失 `/` 的两个本地 include 路径。
 - 三个 ROS 包补齐真实维护者、MIT 许可证、仓库 URL 和运行依赖。
 
-| 验证项 | v1.0.0 状态 |
+| 验证项 | v1.0.1 状态 |
 |---|---|
 | 19 个 Launch XML、3 个 `package.xml` | 本地静态解析通过 |
 | 7 个 YAML 与 2 组地图引用 | 本地静态解析/路径检查通过 |
@@ -168,7 +168,7 @@ source devel/setup.bash
 | Arduino UNO 编译 | 未完成：当前发布环境无 Arduino CLI/AVR 工具链 |
 | 串口联调、带载电机和导航实测 | 未进行 |
 
-详见 [验证记录](docs/VALIDATION.md) 和 [v1.0.0 变更说明](docs/RELEASE_CHANGES.md)。
+详见 [验证记录](docs/VALIDATION.md) 和 [版本变更说明](docs/RELEASE_CHANGES.md)。
 
 ## 许可证与引用
 
