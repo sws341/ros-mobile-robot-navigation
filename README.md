@@ -1,12 +1,12 @@
 # 移动机器人机电系统设计与 ROS 自主导航
 
-**Mobile Robot Navigation & Arduino Control** · 本科毕业设计（2025）· 公开归档版 `v1.0.1`
+**Mobile Robot Navigation & Arduino Control** · 本科毕业设计（2025）· `v1.0.2`
 
 [![Static validation](https://github.com/sws341/ros-mobile-robot-navigation/actions/workflows/static-validation.yml/badge.svg)](https://github.com/sws341/ros-mobile-robot-navigation/actions/workflows/static-validation.yml)
 [![License: MIT](https://img.shields.io/badge/author--owned%20code-MIT-blue.svg)](LICENSE)
 [![Firmware: BSD](https://img.shields.io/badge/upstream%20firmware-BSD--3--Clause-green.svg)](firmware/THIRD_PARTY_LICENSE_BSD.txt)
 
-> 这是一份经过清理和审查的历史工程归档：已完成源码归属梳理、静态检查、图片与内部链接检查；**尚未在本次发布环境完成 ROS/catkin 构建、Arduino UNO 编译或新的实机复测**。它适合代码阅读、求职展示和后续复现，不应被视为开箱即用的安全控制产品。
+从机械结构设计、硬件集成到 ROS 自主导航与 Arduino 电机控制，整理移动机器人项目的系统方案、工程配置和实验记录。
 
 `ROS 1` · `GMapping` · `AMCL` · `Move Base` · `URDF/Xacro` · `Arduino UNO R3` · `Sensor Shield V5` · `L298N` · `Encoder/PID/PWM`
 
@@ -16,7 +16,7 @@
 |:--:|:--:|
 | ![履带式机械结构样机，论文图3-19](assets/figures/robot_prototype.jpg) | ![四轮导航实验平台，论文图3-20](assets/figures/four_wheel_test_platform.jpg) |
 
-**两种平台必须区分：** 履带底盘、三级剪叉升降机构和四自由度机械臂属于机械设计样机；ROS 实景建图、定位和四目标点导航演示使用的是右图所示的独立四轮实验平台。本仓库不宣称履带样机完成了同等导航实测。
+履带样机用于展示底盘、三级剪叉升降机构和四自由度机械臂的机械设计；右图的独立四轮实验平台用于 ROS 实景建图、定位与四目标点导航演示。
 
 ## 项目概述
 
@@ -32,35 +32,23 @@
 
 GMapping、AMCL、Move Base、ROSArduinoBridge、雷达和相机驱动均为第三方开源组件；本项目的贡献定位是**机械设计、系统集成、配置与调试**，不是从零开发 SLAM 或导航核心算法。详见 [个人贡献边界](docs/PROJECT_ORIGINALITY.md) 和 [第三方来源](docs/THIRD_PARTY.md)。
 
-## 系统架构
+## 系统设计
+
+### ROS 软件架构
+
+上位机通过 GMapping 建立地图，使用 AMCL 定位与 Move Base 规划路径；`ros_arduino_python` 将速度指令发送至下位机，并将编码器反馈用于里程计计算。
 
 ![软件总体架构，论文图5-1](assets/figures/software_architecture.png)
 
-```mermaid
-flowchart LR
-  lidar[RPLIDAR A1 /scan] --> gmapping[GMapping]
-  gmapping --> map[Map Server /map]
-  lidar --> amcl[AMCL]
-  map --> amcl
-  amcl --> movebase[Move Base]
-  movebase --> cmd[/cmd_vel]
-  cmd --> bridge[ros_arduino_python]
-  bridge --> uno[Arduino UNO R3 + Sensor Shield V5]
-  uno --> driver[L298N + PWM]
-  driver --> motors[四轮电机]
-  motors --> encoders[四路霍尔编码器]
-  encoders --> uno
-  bridge --> odom[/odom]
-  odom --> amcl
-```
+### 硬件组成
 
-| 硬件总体框图 | UNO R3 与 Shield V5 接线示意 |
-|:--:|:--:|
-| ![硬件总体框图，论文图4-1](assets/figures/hardware_overview.png) | ![UNO R3 与 Shield V5，论文图4-8](assets/figures/uno_shield_wiring.png) |
+RPLIDAR A1 提供环境扫描；Arduino UNO R3 搭配 Sensor Shield V5、L298N 与霍尔编码器，实现四轮电机的编码器采集和 PID/PWM 控制。下位机采用原始资料中独立 `ros_arduino_bridge` 文件夹下的固件版本。
 
-> 接线图是论文归档的历史设计，不是经过本次发布重新验证的安全接线规范。上电前必须核对供电、电平、共地、引脚和急停措施。
+![硬件总体框图，论文图4-1](assets/figures/hardware_overview.png)
 
-## 导航与控制实验记录
+## 导航实验记录
+
+以下论文原图展示实景建图与定位、仿真路径规划，以及独立四轮平台的装配状态。
 
 | 实景建图 | AMCL 实景定位 |
 |:--:|:--:|
@@ -70,13 +58,15 @@ flowchart LR
 |:--:|:--:|
 | ![仿真环境全局路径，论文图5-16](assets/figures/global_path.png) | ![四轮实验平台装配图](assets/figures/four_wheel_assembled.png) |
 
+## 底盘控制与调试
+
+底盘以霍尔编码器反馈转速，通过 PID 计算 PWM 输出。下图保留电机与编码器接线、历史转速检测记录，便于对应固件中的驱动与控制实现。
+
 | 电机与编码器接线 | 历史 PID 转速曲线 |
 |:--:|:--:|
 | ![电机与编码器接线，论文图4-10](assets/figures/motor_encoder_wiring.png) | ![电机转速检测，论文图5-25](assets/figures/pid_response.png) |
 
-![独立四轮平台实景测试场地，论文图5-8](assets/figures/field_test_scene.jpg)
-
-以上均为本科论文中的历史过程记录。仓库没有足够原始数据计算可信的成功率、定位误差或 PID 超调量，因此不提供虚构的性能指标。全部图片索引见 [图源清单](docs/FIGURE_SOURCES.md)。
+实验图片来自本科论文，作为项目过程记录；当前未提供可重算的成功率、定位误差或 PID 超调量数据。图片出处见 [图源清单](docs/FIGURE_SOURCES.md)。
 
 ## 代码入口
 
@@ -158,11 +148,13 @@ source devel/setup.bash
 - 修复 `test_amcl_rviz.launch` 中缺失 `/` 的两个本地 include 路径。
 - 三个 ROS 包补齐真实维护者、MIT 许可证、仓库 URL 和运行依赖。
 
-| 验证项 | v1.0.1 状态 |
+本次发布已完成静态检查与 GitHub Actions 校验；ROS/catkin 构建、Arduino UNO 编译和新实机复测仍待在对应环境中完成。
+
+| 验证项 | v1.0.2 状态 |
 |---|---|
 | 19 个 Launch XML、3 个 `package.xml` | 本地静态解析通过 |
 | 7 个 YAML 与 2 组地图引用 | 本地静态解析/路径检查通过 |
-| README 本地链接与 12 张图片 | 本地存在性和文件签名检查通过 |
+| README 本地链接与 10 张图片 | 本地存在性和文件签名检查通过 |
 | 敏感文件、绝对用户路径、维护者占位 | 扫描通过 |
 | ROS/catkin 构建 | 未完成：当前发布环境无 ROS 1/WSL 权限 |
 | Arduino UNO 编译 | 未完成：当前发布环境无 Arduino CLI/AVR 工具链 |

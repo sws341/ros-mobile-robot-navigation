@@ -151,7 +151,6 @@ for raw_target in markdown_targets:
 expected_figures = {
     "amcl_real_test.png",
     "field_slam_map.png",
-    "field_test_scene.jpg",
     "four_wheel_assembled.png",
     "four_wheel_test_platform.jpg",
     "global_path.png",
@@ -160,7 +159,6 @@ expected_figures = {
     "pid_response.png",
     "robot_prototype.jpg",
     "software_architecture.png",
-    "uno_shield_wiring.png",
 }
 figure_dir = ROOT / "assets" / "figures"
 actual_figures = {path.name for path in figure_dir.iterdir() if path.is_file()}
