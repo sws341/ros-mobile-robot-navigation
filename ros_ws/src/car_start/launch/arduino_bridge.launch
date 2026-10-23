@@ -1,0 +1,6 @@
+<launch>
+  <!-- External dependency: ros_arduino_python. All project-specific config stays in car_start. -->
+  <node name="arduino" pkg="ros_arduino_python" type="arduino_node.py" output="screen">
+    <rosparam file="$(find car_start)/config/arduino_params.yaml" command="load" />
+  </node>
+</launch>

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this project archive, please cite it using the metadata below."
+title: "移动机器人机电系统设计与 ROS 自主导航"
+type: software
+authors:
+  - family-names: Fan
+    given-names: Zhanpeng
+    alias: sws341
+version: 1.0.0
+date-released: 2026-10-23
+url: "https://github.com/sws341/ros-mobile-robot-navigation"
+repository-code: "https://github.com/sws341/ros-mobile-robot-navigation"
+license: MIT
+abstract: >-
+  Public archive of a 2025 undergraduate mobile-robot project integrating
+  ROS 1 navigation configuration and Arduino Uno R3 motor-control firmware.

@@ -1,0 +1,26 @@
+# Catkin output
+build/
+devel/
+install/
+logs/
+.catkin_tools/
+.venv/
+.deps/
+*.pyc
+__pycache__/
+# IDE + editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+# ROS output
+*.bag
+*.bag.active
+*.db3
+*.log
+# Debug artifacts
+*.hex
+*.elf
+*.o
+*.a

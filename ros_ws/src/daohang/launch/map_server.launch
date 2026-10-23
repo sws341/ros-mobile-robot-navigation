@@ -1,0 +1,20 @@
+<!-- <launch>
+    <node name="map_server" pkg="map_server" type="map_server" output="screen">
+        <param name="frame_id" value="map"/>
+        <param name="yaml_filename" value="$(find daohang)/map/nav.yaml"/>
+    </node>
+</launch> -->
+<launch>
+    <!-- 
+     把地图的序列化文件设置为参数，注意序列化地图文件的名字别写错，在这里是nav.yaml！！
+     这样做的目的是方便后续想要更换地图文件的时候不用返回来修改launch文件，直接在启动launch文件的时候传入参数即可
+    -->
+    <arg name="map" default="nav.yaml" />
+    <!-- 运行地图服务器，并且加载设置的地图-->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find daohang)/map/$(arg map)"/>
+    <!-- 
+    其实不用设置launch参数，直接：
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find mycar_nav)/map/nav.yaml"/>
+    也可以 
+    -->
+</launch>  

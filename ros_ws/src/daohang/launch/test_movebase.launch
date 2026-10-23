@@ -1,0 +1,15 @@
+<launch>
+    <!-- 1.集成地图服务(map_server) -->
+   <include  file="$(find daohang)/launch/map_server.launch"/>
+    <!-- 2.集成amcl -->
+    <include  file="$(find daohang)/launch/amcl.launch"/>
+    <!-- 3.集成move_base -->
+    <include  file="$(find daohang)/launch/movebase.launch"/>
+    <!-- 4.启动rviz -->
+        <!-- 4.1关节状态发布节点 -->
+        <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher" />
+        <!-- 4.2机器人状态发布节点 -->
+        <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" />
+        <!-- 4.3启动rviz -->
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(find daohang)/config/nav_test_fzp.rviz"/>
+</launch>

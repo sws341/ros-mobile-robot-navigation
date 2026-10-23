@@ -1,0 +1,25 @@
+--- standalone/diff_controller.h
++++ workspace/diff_controller.h
+@@ -95,7 +95,7 @@
+   int enc_change = 0.5*input+0.5*p->PrevEncD;
+   Perror = p->TargetTicksPerFrame - enc_change;
+   p->PrevEncD = enc_change;
+-  //Serial.println(input);
++  Serial.println(input);
+   /*
+   * Avoid derivative kick and allow tuning changes,
+   * see http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-derivative-kick/
+@@ -146,10 +146,10 @@
+
+   /* Compute PID update for each motor */
+   //分别调试四轮
+-  doPID(&rightPID);
++  //doPID(&rightPID);
+   doPID(&leftPID);
+-  doPID(&right2PID);
+-  doPID(&left2PID);
++  //doPID(&right2PID);
++  //doPID(&left2PID);
+
+   /* Set the motor speeds accordingly */
+   setMotorSpeeds(leftPID.output, rightPID.output,left2PID.output, right2PID.output);

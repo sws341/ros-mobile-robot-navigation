@@ -1,0 +1,48 @@
+--- v0.4/firmware/ROSArduinoBridge4wd/diff_controller.h
++++ v1.0.0/firmware/ROSArduinoBridge4wd/diff_controller.h
+@@
+-int Kp = 2;
+-int Kd = 8.835;
+-int Ki = 0.9;
+-int Ko = 50;
++float Kp = 2.0f;
++float Kd = 8.835f;
++float Ki = 0.9f;
++float Ko = 50.0f;
+
+--- v0.4/firmware/ROSArduinoBridge4wd/ROSArduinoBridge4wd.ino
++++ v1.0.0/firmware/ROSArduinoBridge4wd/ROSArduinoBridge4wd.ino
+@@
+-char argv1[16];
+-char argv2[16];
++char argv1[32];
++char argv2[32];
+@@
+-  int pid_args[4];
++  float pid_args[4];
+@@
+-    while ((str = strtok_r(p, ":", &p)) != '\0') {
+-       pid_args[i] = atoi(str);
+-       i++;
++    while (i < 4 && (str = strtok_r(p, ":", &p)) != '\0') {
++       pid_args[i] = atof(str);
++       i++;
++    }
++    if (i != 4 || strtok_r(p, ":", &p) != '\0') {
++       Serial.println("Invalid PID");
++       break;
+     }
+@@
+-        argv1[index] = chr;
+-        index++;
++        if (index < (int)sizeof(argv1) - 1) {
++          argv1[index] = chr;
++          index++;
++        }
+@@
+-        argv2[index] = chr;
+-        index++;
++        if (index < (int)sizeof(argv2) - 1) {
++          argv2[index] = chr;
++          index++;
++        }

@@ -1,0 +1,9 @@
+<!-- 机器人启动文件：
+        当不包含机器人模型时，需要发布坐标变换
+ -->
+
+<launch>
+    <include file="$(find car_start)/launch/start.launch" />    
+    <!-- <node name="camera2basefootprint" pkg="tf2_ros" type="static_transform_publisher" args="0.08 0 0.1 0 0 0 /base_footprint /camera_link"/> -->
+    <node name="rplidar2basefootprint" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0.175 0 0 0 /base_footprint /laser"/>
+</launch>

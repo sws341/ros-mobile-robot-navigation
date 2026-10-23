@@ -1,0 +1,8 @@
+These SHA-256 values describe the two unmodified firmware copies in the
+private source archive. They are provenance evidence, not hashes of the
+reviewed v1.0.0 public files.
+
+standalone ROSArduinoBridge4wd.ino sha256: 19f83bad1fe189299d5d546f198c46b5c0f0e3e5b4f5dda870679bc25da13ea7
+workspace  ROSArduinoBridge4wd.ino sha256: 19f83bad1fe189299d5d546f198c46b5c0f0e3e5b4f5dda870679bc25da13ea7
+standalone diff_controller.h sha256: d48215a4e955264d636a99d169b070bf9eade29d4efd7229c0e035c8ab71f48b
+workspace  diff_controller.h sha256: 6462670f36535774694f8db1ba1730dbc89eb068e91264fc820a5bf23cf94244

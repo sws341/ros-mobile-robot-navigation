@@ -1,0 +1,9 @@
+<!-- 集成slam与导航，实现机器人自主移动的地图构建 -->
+<launch>
+    <!-- 启动SLAM节点 -->
+    <include file="$(find daohang)/launch/slam01.launch" />
+    <!-- 运行move_base节点 -->
+    <include file="$(find daohang)/launch/movebase.launch" />
+    <!-- 运行rviz,在slam01的launch文件中已经集成了，我们可以去修改的他的args为另一个config中的rviz文件 -->
+    
+</launch>

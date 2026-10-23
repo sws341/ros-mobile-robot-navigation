@@ -1,0 +1,23 @@
+ROS Mobile Robot Navigation & Arduino Control
+Copyright (c) 2025-2026 Zhanpeng Fan (范展鹏)
+
+LICENSE SCOPE
+
+The root MIT License applies only to repository content that Zhanpeng Fan
+owns and is entitled to license, including the project-specific ROS
+configuration, validation script, and newly written documentation.
+
+The firmware under firmware/ROSArduinoBridge4wd is a modified derivative of
+ROSArduinoBridge. It remains subject to the retained BSD notice in
+firmware/THIRD_PARTY_LICENSE_BSD.txt and to the copyright of its upstream
+authors. The root MIT License does not replace that notice.
+
+Photographs, thesis figures, wiring diagrams, and experiment screenshots under
+assets/figures are copyright Zhanpeng Fan and/or their respective rights
+holders. They are included for project documentation and portfolio display;
+they are not relicensed under the root MIT License.
+
+GMapping, AMCL, Move Base, rplidar_ros, usb_cam, ros_arduino_python, ROS, and
+other third-party components are referenced as external dependencies and are
+not redistributed here except for the modified BSD firmware described above.
+See docs/THIRD_PARTY.md for upstream links and attribution.

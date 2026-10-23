@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mycar_description</name>
+  <version>1.0.0</version>
+  <description>URDF/Xacro model for the four-wheel ROS navigation test platform.</description>
+
+  <maintainer email="sws341@users.noreply.github.com">Zhanpeng Fan</maintainer>
+  <author>Zhanpeng Fan</author>
+  <license>MIT</license>
+  <url type="repository">https://github.com/sws341/ros-mobile-robot-navigation</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+</package>

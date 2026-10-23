@@ -1,0 +1,9 @@
+<!-- 测试文件 -->
+<launch>
+    <!-- 1.启动rviz,实体机不用，要在PC端开rviz才对！ -->
+
+    <!-- 2.启动地图服务 -->
+        <include file="$(find daohang)/launch/map_server.launch"/>
+    <!-- 3.启动amcl的launch文件 -->
+        <include file="$(find daohang)/launch/amcl.launch"/>
+</launch>

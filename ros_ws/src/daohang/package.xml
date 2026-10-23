@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>daohang</name>
+  <version>1.0.0</version>
+  <description>Historical ROS 1 SLAM, localization, and navigation configuration.</description>
+
+  <maintainer email="sws341@users.noreply.github.com">Zhanpeng Fan</maintainer>
+  <author>Zhanpeng Fan</author>
+  <license>MIT</license>
+  <url type="repository">https://github.com/sws341/ros-mobile-robot-navigation</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>gmapping</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>map_server</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz</exec_depend>
+</package>
